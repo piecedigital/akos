@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Route, Switch } from "react-router";
 
+// a class for constructing a view
 export class dangerousHTML {
     route: string;
     html: string;
@@ -13,6 +14,8 @@ export class dangerousHTML {
     }
 }
 
+// puts together a React view based on the "dangerouslySetInnerHTML" React property
+// works for static sites
 export function dangerouslySetHTML(pages: dangerousHTML[]) {
     return class HTML extends React.Component {
         render() {

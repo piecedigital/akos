@@ -13,11 +13,11 @@ let dbs: Database = null;
 let store: Store = null;
 
 app.post("/apply-theme", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
 
     process.env["THEME"] = req.body.theme;
     var file = JSON.parse(readFileSync(join(__dirname, "../register.json")).toString());
-    console.log(file);
+    // console.log(file);
 
     file.theme = req.body.theme;
 

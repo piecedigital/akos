@@ -12,6 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_router_1 = require("react-router");
+// a class for constructing a view
 var dangerousHTML = /** @class */ (function () {
     function dangerousHTML(route, html, className) {
         if (className === void 0) { className = ""; }
@@ -22,6 +23,8 @@ var dangerousHTML = /** @class */ (function () {
     return dangerousHTML;
 }());
 exports.dangerousHTML = dangerousHTML;
+// puts together a React view based on the "dangerouslySetInnerHTML" React property
+// works for static sites
 function dangerouslySetHTML(pages) {
     return /** @class */ (function (_super) {
         __extends(HTML, _super);

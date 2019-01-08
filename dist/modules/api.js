@@ -8,10 +8,10 @@ var app = express();
 var dbs = null;
 var store = null;
 app.post("/apply-theme", function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
     process.env["THEME"] = req.body.theme;
     var file = JSON.parse(fs_1.readFileSync(path_1.join(__dirname, "../register.json")).toString());
-    console.log(file);
+    // console.log(file);
     file.theme = req.body.theme;
     fs_1.writeFileSync(path_1.join(__dirname, "../register.json"), JSON.stringify(file));
     res.redirect(req.headers.referer);

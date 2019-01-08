@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Switch, Route } from "react-router";
 // import views
-import { $404 } from "../views/404";
-import { InternalError } from "../views/internal-error";
-import { AdminDashboard, AdminLogin } from "../views/admin";
+import { $404 } from "./404";
+import { InternalError } from "./internal-error";
+import { AdminDashboard, AdminLogin } from "./admin";
 
 const views: Record<string, any> = {
     "admin": AdminDashboard,
@@ -25,15 +25,15 @@ export class Layout extends React.Component {
         let theme = null;
 
         try {
-            theme = require(`../themes/${process.env["THEME"]}/index`).danger()
+            theme = require(`../themes/${process.env["THEME"]}/index`).danger();
         } catch (error) {
             // console.error(error);
             try {
-                theme = require(`../themes/${process.env["THEME"]}/index`).default
+                theme = require(`../themes/${process.env["THEME"]}/index`).default;
             } catch (error) {
                 // console.error(error);
                 try {
-                    theme = require(`../themes/example/index`).default
+                    theme = require(`../themes/example/index`).default;
                 } catch (error) {
                     // console.error(error);
                 }

@@ -21,9 +21,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_router_1 = require("react-router");
 // import views
-var _404_1 = require("../views/404");
-var internal_error_1 = require("../views/internal-error");
-var admin_1 = require("../views/admin");
+var _404_1 = require("./404");
+var internal_error_1 = require("./internal-error");
+var admin_1 = require("./admin");
 var views = {
     "admin": admin_1.AdminDashboard,
     "adminLogin": admin_1.AdminLogin,
