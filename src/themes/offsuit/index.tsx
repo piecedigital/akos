@@ -64,15 +64,10 @@ class Nav extends React.Component {
     }
 }
 
-enum EventFilterType {
-    FUTURE = 1 << 1,
-    CURRENT = 1 << 2,
-    PAST = 1 << 3,
-}
-
 class Home extends React.Component {
     state: {
         eventType: EventFilterType
+        tournaments: TournamentInfo
     };
     props: any;
 
@@ -81,7 +76,8 @@ class Home extends React.Component {
         // console.log("home", props);
 
         this.state = {
-            eventType: EventFilterType.CURRENT
+            eventType: EventFilterType.CURRENT,
+            tournaments: []
         };
     }
 
@@ -96,41 +92,9 @@ class Home extends React.Component {
                 </div>
             </section>,
             <section>
-                <div className="section-separator">
-                    <div className="triangle"></div>
-                </div>
-                <div className="page-wrap">
-                    <p>
-                        <span className="bold">Lorem ipsum dolor sit amet</span>, consectetur adipiscing elit. Curabitur ac massa et purus faucibus pulvinar vitae consequat nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras varius leo nulla, ac condimentum turpis pellentesque tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    </p>
-                </div>
-            </section>,
-            <section>
-                <div className="section-separator">
-                    <div className="triangle"></div>
-                </div>
-                <div className="page-wrap">
-                    <div className="title">
-                        Projects
-                    </div>
-                    <div className="separator"></div>
-                    <div className="image-cta">
-                        {
-                            [].map((project: string, ind) => {
-                                return (
-                                    <div key={`${project}-${ind}`} className="img">
-                                        project
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                </div>
+
             </section>,
             <section className="footer">
-                <div className="section-separator">
-                    <div className="triangle"></div>
-                </div>
                 <div className="page-wrap">
                     <footer>
                         &copy; Copyright  Darryl Dixon, 2018. All Rights Reserved.
@@ -213,6 +177,15 @@ class Foobar extends React.Component {
         ]);
     }
 }
+
+// non-react definitions
+enum EventFilterType {
+    FUTURE = 1 << 1,
+    CURRENT = 1 << 2,
+    PAST = 1 << 3,
+}
+
+class TournamentInfo {}
 
 // add this function if you want
 export function domRender() {

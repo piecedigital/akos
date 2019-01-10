@@ -69,19 +69,14 @@ var Nav = /** @class */ (function (_super) {
     };
     return Nav;
 }(React.Component));
-var EventFilterType;
-(function (EventFilterType) {
-    EventFilterType[EventFilterType["FUTURE"] = 2] = "FUTURE";
-    EventFilterType[EventFilterType["CURRENT"] = 4] = "CURRENT";
-    EventFilterType[EventFilterType["PAST"] = 8] = "PAST";
-})(EventFilterType || (EventFilterType = {}));
 var Home = /** @class */ (function (_super) {
     __extends(Home, _super);
     function Home(props) {
         var _this = _super.call(this, props) || this;
         // console.log("home", props);
         _this.state = {
-            eventType: EventFilterType.CURRENT
+            eventType: EventFilterType.CURRENT,
+            tournaments: []
         };
         return _this;
     }
@@ -93,25 +88,8 @@ var Home = /** @class */ (function (_super) {
                     React.createElement("div", { className: "toggle-tab future" }, "Future Events"),
                     React.createElement("div", { className: "toggle-tab current" }, "Current Events"),
                     React.createElement("div", { className: "toggle-tab past" }, "Past Events"))),
-            React.createElement("section", null,
-                React.createElement("div", { className: "section-separator" },
-                    React.createElement("div", { className: "triangle" })),
-                React.createElement("div", { className: "page-wrap" },
-                    React.createElement("p", null,
-                        React.createElement("span", { className: "bold" }, "Lorem ipsum dolor sit amet"),
-                        ", consectetur adipiscing elit. Curabitur ac massa et purus faucibus pulvinar vitae consequat nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras varius leo nulla, ac condimentum turpis pellentesque tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."))),
-            React.createElement("section", null,
-                React.createElement("div", { className: "section-separator" },
-                    React.createElement("div", { className: "triangle" })),
-                React.createElement("div", { className: "page-wrap" },
-                    React.createElement("div", { className: "title" }, "Projects"),
-                    React.createElement("div", { className: "separator" }),
-                    React.createElement("div", { className: "image-cta" }, [].map(function (project, ind) {
-                        return (React.createElement("div", { key: project + "-" + ind, className: "img" }, "project"));
-                    })))),
+            React.createElement("section", null),
             React.createElement("section", { className: "footer" },
-                React.createElement("div", { className: "section-separator" },
-                    React.createElement("div", { className: "triangle" })),
                 React.createElement("div", { className: "page-wrap" },
                     React.createElement("footer", null, "\u00A9 Copyright  Darryl Dixon, 2018. All Rights Reserved.")))
         ]);
@@ -160,6 +138,18 @@ var Foobar = /** @class */ (function (_super) {
     };
     return Foobar;
 }(React.Component));
+// non-react definitions
+var EventFilterType;
+(function (EventFilterType) {
+    EventFilterType[EventFilterType["FUTURE"] = 2] = "FUTURE";
+    EventFilterType[EventFilterType["CURRENT"] = 4] = "CURRENT";
+    EventFilterType[EventFilterType["PAST"] = 8] = "PAST";
+})(EventFilterType || (EventFilterType = {}));
+var TournamentInfo = /** @class */ (function () {
+    function TournamentInfo() {
+    }
+    return TournamentInfo;
+}());
 // add this function if you want
 function domRender() {
     return react_dom_1.render(React.createElement(Index, null), document.querySelector(".react-app"));
