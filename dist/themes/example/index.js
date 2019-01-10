@@ -22,6 +22,7 @@ var React = require("react");
 var header_1 = require("./partials/header");
 var footer_1 = require("./partials/footer");
 var react_router_1 = require("react-router");
+var react_dom_1 = require("react-dom");
 var Index = /** @class */ (function (_super) {
     __extends(Index, _super);
     function Index(props) {
@@ -140,3 +141,8 @@ var Foobar = /** @class */ (function (_super) {
     };
     return Foobar;
 }(React.Component));
+// add this function if you want
+function domRender() {
+    return react_dom_1.render(React.createElement(Index, null), document.querySelector(".react-app"));
+}
+exports.domRender = domRender;

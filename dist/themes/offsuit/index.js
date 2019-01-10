@@ -22,6 +22,7 @@ var React = require("react");
 var header_1 = require("./partials/header");
 var footer_1 = require("./partials/footer");
 var react_router_1 = require("react-router");
+var react_dom_1 = require("react-dom");
 var Index = /** @class */ (function (_super) {
     __extends(Index, _super);
     function Index(props) {
@@ -34,7 +35,7 @@ var Index = /** @class */ (function (_super) {
                         title: "Offsuit Tournament Info"
                     })
                 } }),
-            React.createElement(RouteContainer, __assign({}, this.props)),
+            React.createElement(RoutesContainer, __assign({}, this.props)),
             React.createElement("span", { dangerouslySetInnerHTML: {
                     __html: footer_1.default(null)
                 } })
@@ -43,38 +44,55 @@ var Index = /** @class */ (function (_super) {
     return Index;
 }(React.Component));
 exports.default = Index;
-var RouteContainer = /** @class */ (function (_super) {
-    __extends(RouteContainer, _super);
-    function RouteContainer(props) {
+var RoutesContainer = /** @class */ (function (_super) {
+    __extends(RoutesContainer, _super);
+    function RoutesContainer(props) {
         return _super.call(this, props) || this;
     }
-    RouteContainer.prototype.render = function () {
+    RoutesContainer.prototype.render = function () {
         var _this = this;
         return (React.createElement(react_router_1.Switch, null,
             React.createElement(react_router_1.Route, { exact: true, path: "/", component: function (props) { return React.createElement(Home, __assign({}, _this.props)); } }),
             React.createElement(react_router_1.Route, { exact: true, path: "/foobar", component: function (props) { return React.createElement(Foobar, __assign({}, _this.props)); } })));
     };
-    return RouteContainer;
+    return RoutesContainer;
 }(React.Component));
-exports.RouteContainer = RouteContainer;
+exports.RoutesContainer = RoutesContainer;
+var Nav = /** @class */ (function (_super) {
+    __extends(Nav, _super);
+    function Nav(props) {
+        return _super.call(this, props) || this;
+    }
+    Nav.prototype.render = function () {
+        return (React.createElement("nav", null,
+            React.createElement("header", { className: "page-wrap" })));
+    };
+    return Nav;
+}(React.Component));
+var EventFilterType;
+(function (EventFilterType) {
+    EventFilterType[EventFilterType["FUTURE"] = 2] = "FUTURE";
+    EventFilterType[EventFilterType["CURRENT"] = 4] = "CURRENT";
+    EventFilterType[EventFilterType["PAST"] = 8] = "PAST";
+})(EventFilterType || (EventFilterType = {}));
 var Home = /** @class */ (function (_super) {
     __extends(Home, _super);
     function Home(props) {
         var _this = _super.call(this, props) || this;
         // console.log("home", props);
         _this.state = {
-            portfolios: props.portfolios || []
+            eventType: EventFilterType.CURRENT
         };
         return _this;
     }
     Home.prototype.render = function () {
         return ([
-            React.createElement("nav", null,
-                React.createElement("div", { className: "page-wrap" })),
-            React.createElement("section", { className: "header" },
+            React.createElement(Nav, null),
+            React.createElement("section", { className: "toggle-bar" },
                 React.createElement("div", { className: "page-wrap" },
-                    React.createElement("header", null,
-                        React.createElement("h1", null, "Welcome To This Website")))),
+                    React.createElement("div", { className: "toggle-tab future" }, "Future Events"),
+                    React.createElement("div", { className: "toggle-tab current" }, "Current Events"),
+                    React.createElement("div", { className: "toggle-tab past" }, "Past Events"))),
             React.createElement("section", null,
                 React.createElement("div", { className: "section-separator" },
                     React.createElement("div", { className: "triangle" })),
@@ -88,7 +106,7 @@ var Home = /** @class */ (function (_super) {
                 React.createElement("div", { className: "page-wrap" },
                     React.createElement("div", { className: "title" }, "Projects"),
                     React.createElement("div", { className: "separator" }),
-                    React.createElement("div", { className: "image-cta" }, this.state.portfolios.map(function (project, ind) {
+                    React.createElement("div", { className: "image-cta" }, [].map(function (project, ind) {
                         return (React.createElement("div", { key: project + "-" + ind, className: "img" }, "project"));
                     })))),
             React.createElement("section", { className: "footer" },
@@ -112,8 +130,7 @@ var Foobar = /** @class */ (function (_super) {
     }
     Foobar.prototype.render = function () {
         return ([
-            React.createElement("nav", null,
-                React.createElement("div", { className: "page-wrap" })),
+            React.createElement(Nav, null),
             React.createElement("section", { className: "header" },
                 React.createElement("div", { className: "page-wrap" },
                     React.createElement("header", null,
@@ -143,3 +160,8 @@ var Foobar = /** @class */ (function (_super) {
     };
     return Foobar;
 }(React.Component));
+// add this function if you want
+function domRender() {
+    return react_dom_1.render(React.createElement(Index, null), document.querySelector(".react-app"));
+}
+exports.domRender = domRender;

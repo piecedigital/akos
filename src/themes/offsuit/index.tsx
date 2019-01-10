@@ -3,6 +3,7 @@ import header from "./partials/header";
 import { renderOptions } from "../../modules/render";
 import footer from "./partials/footer";
 import { Switch, Route } from "react-router";
+import { render } from "react-dom";
 
 export default class Index extends React.Component {
     state: any;
@@ -19,7 +20,7 @@ export default class Index extends React.Component {
                     title: "Offsuit Tournament Info"
                 } as renderOptions)
             }} />,
-            <RouteContainer {...this.props} />,
+            <RoutesContainer {...this.props} />,
             <span dangerouslySetInnerHTML={{
                 __html: footer(null)
             }} />
@@ -27,7 +28,7 @@ export default class Index extends React.Component {
     }
 }
 
-export class RouteContainer extends React.Component {
+export class RoutesContainer extends React.Component {
     state: any;
     props: any;
 
@@ -45,9 +46,33 @@ export class RouteContainer extends React.Component {
     }
 }
 
+class Nav extends React.Component {
+    state: {};
+    props: {};
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <nav>
+                <header className="page-wrap">
+                </header>
+            </nav>
+        );
+    }
+}
+
+enum EventFilterType {
+    FUTURE = 1 << 1,
+    CURRENT = 1 << 2,
+    PAST = 1 << 3,
+}
+
 class Home extends React.Component {
     state: {
-        portfolios: string[]
+        eventType: EventFilterType
     };
     props: any;
 
@@ -56,23 +81,18 @@ class Home extends React.Component {
         // console.log("home", props);
 
         this.state = {
-            portfolios: props.portfolios || []
+            eventType: EventFilterType.CURRENT
         };
     }
 
     render() {
         return ([
-            <nav>
+            <Nav />,
+            <section className="toggle-bar">
                 <div className="page-wrap">
-                </div>
-            </nav>,
-            <section className="header">
-                <div className="page-wrap">
-                    <header>
-                        <h1>
-                            Welcome To This Website
-                        </h1>
-                    </header>
+                    <div className="toggle-tab future">Future Events</div>
+                    <div className="toggle-tab current">Current Events</div>
+                    <div className="toggle-tab past">Past Events</div>
                 </div>
             </section>,
             <section>
@@ -96,7 +116,7 @@ class Home extends React.Component {
                     <div className="separator"></div>
                     <div className="image-cta">
                         {
-                            this.state.portfolios.map((project: string, ind) => {
+                            [].map((project: string, ind) => {
                                 return (
                                     <div key={`${project}-${ind}`} className="img">
                                         project
@@ -138,10 +158,7 @@ class Foobar extends React.Component {
 
     render() {
         return ([
-            <nav>
-                <div className="page-wrap">
-                </div>
-            </nav>,
+            <Nav />,
             <section className="header">
                 <div className="page-wrap">
                     <header>
@@ -195,4 +212,9 @@ class Foobar extends React.Component {
             </section>
         ]);
     }
+}
+
+// add this function if you want
+export function domRender() {
+    return render(<Index />, document.querySelector(".react-app"));
 }

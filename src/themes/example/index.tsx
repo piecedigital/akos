@@ -4,6 +4,7 @@ import header from "./partials/header";
 import { renderOptions } from "../../modules/render";
 import footer from "./partials/footer";
 import { Switch, Route } from "react-router";
+import { render } from "react-dom";
 
 export default class Index extends React.Component {
     state: any;
@@ -189,4 +190,9 @@ class Foobar extends React.Component {
             </section>
         ]);
     }
+}
+
+// add this function if you want
+export function domRender() {
+    return render(<Index />, document.querySelector(".react-app"));
 }
